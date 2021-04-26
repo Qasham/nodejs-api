@@ -1,0 +1,23 @@
+POST  http://localhost:3001/user
+Content-Type: application/json
+
+{
+   "name":"Qasham",
+   "surname":"Quluzada",
+   "email":"test23@amail.az",
+   "password":"qwerty23"
+}
+
+###
+
+POST  http://localhost:3001/composer
+Content-Type: application/json
+
+{
+   "fullname":"GUY HAWKINS",
+   "job": "composer",
+   "description": "As a composer for media, Drew has produced music and sonic branding for numerous world brands and media conglomerates. He is also an active concert composer and sound artist with a diverse range of international commissions and exhibits. Revered by his peers, industry professionals, and critics, his work has been called both “rare” and “remarkable.” “This composer bends and stretches rules within his own aesthetic, weaving his musical ideas in harmonious waves that threaten to drown, yet gently tumble the listener forward with intrigue and anticipation.” -Adam Rosenthal review for Persee: Orchestrated Perception I think we shall meet!",
+   "photo_url": "https://qasham.github.io/justforhorns/assets/images/composer1.png",
+   "country": "Azerbaijan"
+  
+}
