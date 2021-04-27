@@ -1,4 +1,5 @@
-POST  http://localhost:3001/user
+# USER
+POST  http://localhost:3001/user/signup
 Content-Type: application/json
 
 {
@@ -9,7 +10,16 @@ Content-Type: application/json
 }
 
 ###
+POST  http://localhost:3001/user/signin
+Content-Type: application/json
 
+{
+   "email":"test23@amail.az",
+   "password":"qwerty23"
+}
+
+# COMPOSER
+### 
 POST  http://localhost:3001/composer
 Content-Type: application/json
 
@@ -20,4 +30,17 @@ Content-Type: application/json
    "photo_url": "https://qasham.github.io/justforhorns/assets/images/composer1.png",
    "country": "Azerbaijan"
   
+}
+###
+GET  http://localhost:3001/composer
+Content-Type: application/json
+
+# PRODUCT
+###
+POST  http://localhost:3001/product
+Content-Type: application/json
+
+{
+   "name":"Fantasie über Themen aus Giuseppe Verdis Rigoletto",
+   "composers":["608747a87362c828b08f66ac","6087454e46b54a0f50140e91"]
 }

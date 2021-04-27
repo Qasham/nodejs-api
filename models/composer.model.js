@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const composerSchema = mongoose.Schema({
+export const composerSchema = mongoose.Schema({
   id: { type: String },
   fullname: { type: String, required: true },
   job: { type: String, required: true },

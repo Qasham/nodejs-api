@@ -1,6 +1,8 @@
 import express from "express";
-import userRoute from "./routes/user.js";
-import composerRoute from "./routes/composer.js";
+import userRoute from "./routes/user.route.js";
+import composerRoute from "./routes/composer.route.js";
+import productRoute from "./routes/product.route.js";
+
 import bodyParser from "body-parser";
 import cors from "cors";
 import mongoose from "mongoose";
@@ -14,15 +16,16 @@ app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
+// ROUTES
 app.use("/user", userRoute);
-
 app.use("/composer", composerRoute);
+app.use("/product", productRoute);
 
 app.get("/", (req, res) => {
   res.send("Hello from home page");
 });
 
-// Start listening to the server
+// START listening to the server
 mongoose
   .connect(process.env.CONNECTION_URL, {
     useNewUrlParser: true,
