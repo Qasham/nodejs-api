@@ -37,10 +37,44 @@ Content-Type: application/json
 
 # PRODUCT
 ###
+
 POST  http://localhost:3001/product
 Content-Type: application/json
 
 {
-   "name":"Fantasie über Themen aus Giuseppe Verdis Rigoletto",
-   "composers":["608747a87362c828b08f66ac","6087454e46b54a0f50140e91"]
+   "name":"Test",
+   "genre":"Classical",
+   "composers":["608747a87362c828b08f66ac"],
+   "description":"This digital sheet music was either arranged by Dan Turcan staff of professional arrangers and composers or it is a new engraving of the composition's original printed arrangement. Revered by his peers, industry professionals, and critics, his work has been called both “rare” and “remarkable. ”This composer bends and stretches rules within his own aesthetic, weaving his musical ideas in harmonious waves that threaten to drown, yet gently tumble the listener forward with intrigue and anticipation.",
+   "audio_url":"http://cld3097web.audiovideoweb.com/va90web25003/companions/Foundations%20of%20Rock/3.01.mp3",
+   "price":24.5,
+   "instruments":["60884ac41e2b3b33ac554ddd","60884ac41e2b3b33ac554ddc"],
+   "pages":23,
+   "release_date":"2021-04-27T19:57:25.508Z",
+   "media_list":[
+       {
+          "isVideo": false,
+          "thumbnail": "https://qasham.github.io/justforhorns/assets/images/pdfPreviewImg.png",
+          "url": "https://qasham.github.io/justforhorns/assets/images/pdfPreviewImg.png"
+        },
+        {
+          "isVideo": false,
+          "thumbnail": "https://qasham.github.io/justforhorns/assets/images/pdfPreviewImg.png",
+          "url": "https://qasham.github.io/justforhorns/assets/images/pdfPreviewImg.png"
+        },
+        {
+          "isVideo": false,
+          "thumbnail": "https://qasham.github.io/justforhorns/assets/images/pdfPreviewImg.png",
+          "url": "https://qasham.github.io/justforhorns/assets/images/pdfPreviewImg.png"
+        },
+        {
+          "isVideo": true,
+          "thumbnail": "https://qasham.github.io/justforhorns/assets/images/videoPreviewImg.png",
+          "url": "https://www.youtube.com/watch?v=tkABhOWSeak&list=RDtkABhOWSeak&start_radio=1"
+        }
+   ]
 }
+
+###
+GET  http://localhost:3001/product
+Content-Type: application/json

@@ -1,7 +1,8 @@
+import { UserModel } from "../models/index.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import UserModel from "../models/user.model.js";
-const secret = "test";
+
+const secret = process.env.JWT_SECRET;
 
 export const signIn = async (req, res) => {
   const { email, password } = req.body;

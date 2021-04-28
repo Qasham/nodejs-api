@@ -1,28 +1,25 @@
+import mongoose from "mongoose";
 import express from "express";
-import userRoute from "./routes/user.route.js";
-import composerRoute from "./routes/composer.route.js";
-import productRoute from "./routes/product.route.js";
-
+import { ComposerRoute, ProductRoute, UserRoute } from "./routes/index.js";
 import bodyParser from "body-parser";
 import cors from "cors";
-import mongoose from "mongoose";
 import dotenv from "dotenv";
 dotenv.config();
 
 const PORT = process.env.PORT || 5000;
 const app = express();
-
-app.use(bodyParser.json({ limit: "30mb", extended: true }));
-app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
+// limit: "30mb",
+app.use(bodyParser.json({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // ROUTES
-app.use("/user", userRoute);
-app.use("/composer", composerRoute);
-app.use("/product", productRoute);
+app.use("/user", UserRoute);
+app.use("/composer", ComposerRoute);
+app.use("/product", ProductRoute);
 
 app.get("/", (req, res) => {
-  res.send("Hello from home page");
+  res.status(200).send("Hello world");
 });
 
 // START listening to the server
@@ -30,10 +27,12 @@ mongoose
   .connect(process.env.CONNECTION_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true,
   })
-  .then(() =>
+  .then(() => {
     app.listen(PORT, () =>
       console.log(`Server Running on Port: http://localhost:${PORT}`)
-    )
-  )
+    );
+  })
   .catch((error) => console.log(`${error} did not connect`));
