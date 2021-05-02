@@ -3,12 +3,9 @@ import {
   createComposer,
   getComposers,
 } from "../controllers/composer.controller.js";
+
 const router = express.Router();
 
-// CREATE
-router.post("/", createComposer);
-
-// GET ALL
-router.get("/", getComposers);
+router.route("/").get(getComposers).post(createComposer);
 
 export default router;

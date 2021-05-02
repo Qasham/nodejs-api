@@ -6,10 +6,6 @@ import {
 
 const router = express.Router();
 
-// CREATE PRODUCT
-router.post("/", createProduct);
-
-// GET ALL
-router.get("/", getProducts);
+router.route("/").post(createProduct).get(getProducts);
 
 export default router;

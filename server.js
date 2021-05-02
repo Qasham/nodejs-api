@@ -9,14 +9,13 @@ dotenv.config();
 const PORT = process.env.PORT || 5000;
 const app = express();
 app.use(cors());
-// limit: "30mb",
 app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // ROUTES
-app.use("/user", UserRoute);
-app.use("/composer", ComposerRoute);
-app.use("/product", ProductRoute);
+app.use("/api/v1/composer", ComposerRoute);
+app.use("/api/v1/product", ProductRoute);
+app.use("/api/v1/auth", UserRoute);
 
 app.get("/", (req, res) => {
   res.status(200).send("Hello world");
