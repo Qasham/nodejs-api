@@ -1,4 +1,4 @@
-import { ProductModel, InstrumentModel } from "../models/index.js";
+import { ProductModel } from '../models/index.js';
 
 export const createProduct = async (req, res, next) => {
   try {
@@ -6,7 +6,7 @@ export const createProduct = async (req, res, next) => {
 
     // check model is valid
     const validatedModel = newProduct.validateSync();
-    if (!!validatedModel) {
+    if (!validatedModel) {
       return res.status(400).json({ message: `${validatedModel}` });
     }
 
@@ -24,8 +24,8 @@ export const getProducts = async (req, res) => {
       __v: 0,
       media_list: 0,
     })
-      .populate("composers", { fullname: 1, photo_url: 1 })
-      .populate("instruments", { name: 1 });
+      .populate('composers', { fullname: 1, photo_url: 1 })
+      .populate('instruments', { name: 1 });
 
     res.status(200).json(allProducts);
   } catch (error) {

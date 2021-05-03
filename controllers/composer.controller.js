@@ -1,16 +1,16 @@
-import { ComposerModel } from "../models/index.js";
+import { ComposerModel } from '../models/index.js';
 
 export const createComposer = async (req, res) => {
   try {
     const newComposer = new ComposerModel(req.body);
 
     const validatedModel = newComposer.validateSync();
-    if (!!validatedModel) {
+    if (!validatedModel) {
       return res.status(400).json({ message: `${validatedModel}` });
     }
 
     await newComposer.save();
-    res.status(201).json({ newComposer, message: "Composer created" });
+    res.status(201).json({ newComposer, message: 'Composer created' });
   } catch (error) {
     res.status(500).json({ message: error });
   }

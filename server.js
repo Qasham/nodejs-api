@@ -1,24 +1,27 @@
-import mongoose from "mongoose";
-import express from "express";
-import { ComposerRoute, ProductRoute, UserRoute } from "./routes/index.js";
-import bodyParser from "body-parser";
-import cors from "cors";
-import dotenv from "dotenv";
+import dotenv from 'dotenv';
+import cors from 'cors';
+import mongoose from 'mongoose';
+import express from 'express';
+import bodyParser from 'body-parser';
+import { ComposerRoute, ProductRoute, UserRoute } from './routes/index.js';
+
 dotenv.config();
 
 const PORT = process.env.PORT || 5000;
 const app = express();
+
+// MIDDLEWARES
 app.use(cors());
 app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // ROUTES
-app.use("/api/v1/composer", ComposerRoute);
-app.use("/api/v1/product", ProductRoute);
-app.use("/api/v1/auth", UserRoute);
+app.use('/api/v1/composer', ComposerRoute);
+app.use('/api/v1/product', ProductRoute);
+app.use('/api/v1/auth', UserRoute);
 
-app.get("/", (req, res) => {
-  res.status(200).send("Hello world");
+app.get('/', (req, res) => {
+  res.status(200).send('Hello world');
 });
 
 // START listening to the server

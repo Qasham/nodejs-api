@@ -1,16 +1,16 @@
-import InstrumentModel from "../models/instrument.model.js";
+import InstrumentModel from '../models/instrument.model.js';
 
 const seedInstruments = () => {
   try {
     const instruments = [
       {
-        name: "French Horn",
+        name: 'French Horn',
       },
       {
-        name: "Trumpet",
+        name: 'Trumpet',
       },
       {
-        name: "Tuba",
+        name: 'Tuba',
       },
     ];
 

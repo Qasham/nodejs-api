@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const composerSchema = mongoose.Schema({
   id: { type: String },
@@ -9,4 +9,4 @@ const composerSchema = mongoose.Schema({
   country: { type: String, required: true },
 });
 
-export default mongoose.model("Composer", composerSchema);
+export default mongoose.model('Composer', composerSchema);
