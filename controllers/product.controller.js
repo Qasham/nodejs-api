@@ -5,9 +5,9 @@ export const createProduct = async (req, res, next) => {
     const newProduct = new ProductModel(req.body);
 
     // check model is valid
-    const validatedModel = newProduct.validateSync();
-    if (!validatedModel) {
-      return res.status(400).json({ message: `${validatedModel}` });
+    const isInValidModel = newProduct.validateSync();
+    if (isInValidModel) {
+      return res.status(400).json({ message: `${isInValidModel}` });
     }
 
     await newProduct.save();

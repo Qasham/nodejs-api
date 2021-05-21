@@ -4,9 +4,10 @@ export const createComposer = async (req, res) => {
   try {
     const newComposer = new ComposerModel(req.body);
 
-    const validatedModel = newComposer.validateSync();
-    if (!validatedModel) {
-      return res.status(400).json({ message: `${validatedModel}` });
+    const isInValidModel = newComposer.validateSync();
+
+    if (isInValidModel) {
+      return res.status(400).json({ message: `${isInValidModel}` });
     }
 
     await newComposer.save();
