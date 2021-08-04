@@ -11,7 +11,7 @@ const productSchema = mongoose.Schema({
   name: {
     type: String,
     required: true,
-    unique: [true, 'asdasd'],
+    unique: [true],
   },
   composers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Composer' }],
   genre: { type: String, required: true, default: null },

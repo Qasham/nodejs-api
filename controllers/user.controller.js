@@ -1,7 +1,8 @@
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import bcrypt from 'bcryptjs';
-import { UserModel } from '../models/index.js';
+import mongoose from 'mongoose';
+import { ProductModel, UserModel } from '../models/index.js';
 
 dotenv.config();
 
@@ -28,6 +29,7 @@ export const signIn = async (req, res) => {
       name: oldUser.name,
       surname: oldUser.surname,
       email: oldUser.email,
+      basket: oldUser.basket,
       token,
     });
   } catch (err) {
@@ -54,6 +56,7 @@ export const signUp = async (req, res) => {
       password: hashedPassword,
       name,
       surname,
+      basket: [],
     });
 
     const token = jwt.sign({ email: result.email, id: result._id }, SECRET, {
@@ -65,4 +68,21 @@ export const signUp = async (req, res) => {
     console.error(error);
     res.status(500).json({ message: 'Something went wrong' });
   }
+};
+
+export const addToBasket = async (req, res) => {
+  console.log(req.params);
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).send(`No product with id: ${id}`);
+  }
+  const product = await ProductModel.findById(id);
+  try {
+    res.status(200).json(product);
+  } catch (err) {
+    res.status(500).json({ message: 'Something went wrong' });
+  }
+
+  res.status(200).json({ message: 'Happy codding' });
 };

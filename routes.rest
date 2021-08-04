@@ -1,4 +1,4 @@
-# USER
+# AUTH
 POST  http://localhost:3001/api/v1/auth/register
 Content-Type: application/json
 
@@ -15,8 +15,20 @@ Content-Type: application/json
 
 {
    "email":"test23@amail.az",
-   "password":"aasdasd"
+   "password":"qwerty23"
 }
+
+
+
+
+
+# USER
+###
+POST  http://localhost:3001/api/v1/user/add-to-basket/60884fe4cb15a4256c174654
+Content-Type: application/json
+
+
+
 
 # COMPOSER
 ### 
@@ -34,6 +46,11 @@ Content-Type: application/json
 ###
 GET  http://localhost:3001/api/v1/composer
 Content-Type: application/json
+
+
+
+
+
 
 # PRODUCT
 ###

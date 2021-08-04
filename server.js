@@ -3,7 +3,12 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import express from 'express';
 import bodyParser from 'body-parser';
-import { ComposerRoute, ProductRoute, UserRoute } from './routes/index.js';
+import {
+  ComposerRoute,
+  ProductRoute,
+  AuthRoute,
+  UserRoute,
+} from './routes/index.js';
 
 dotenv.config();
 
@@ -16,9 +21,10 @@ app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // ROUTES
+app.use('/api/v1/auth', AuthRoute);
+app.use('/api/v1/user', UserRoute);
 app.use('/api/v1/composer', ComposerRoute);
 app.use('/api/v1/product', ProductRoute);
-app.use('/api/v1/auth', UserRoute);
 
 app.get('/', (req, res) => {
   res.status(200).send('Hello world');
