@@ -24,10 +24,19 @@ Content-Type: application/json
 
 # USER
 ###
-POST  http://localhost:3001/api/v1/user/add-to-basket/60884fe4cb15a4256c174654
+POST  http://localhost:3001/api/v1/user/add-to-basket/60889b12a0a53e0cfc9280be
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyM0BhbWFpbC5heiIsImlkIjoiNjA4NzM4MjIyYmM3M2MzNjBjM2JmMDZkIiwiaWF0IjoxNjI4NjI2NDQzLCJleHAiOjE2Mjg2MzAwNDN9.ETj6wBbsJmBJmHZ0IDqIIk__C1ZYMKnSlfvr-ccE8vk
+Content-Type: application/json
+### 
+DELETE   http://localhost:3001/api/v1/user/remove-from-basket/60889b12a0a53e0cfc9280be
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyM0BhbWFpbC5heiIsImlkIjoiNjA4NzM4MjIyYmM3M2MzNjBjM2JmMDZkIiwiaWF0IjoxNjI4NjI2NDQzLCJleHAiOjE2Mjg2MzAwNDN9.ETj6wBbsJmBJmHZ0IDqIIk__C1ZYMKnSlfvr-ccE8vk
 Content-Type: application/json
 
 
+###
+GET   http://localhost:3001/api/v1/user/get-basket
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyM0BhbWFpbC5heiIsImlkIjoiNjA4NzM4MjIyYmM3M2MzNjBjM2JmMDZkIiwiaWF0IjoxNjI4NjI2NDQzLCJleHAiOjE2Mjg2MzAwNDN9.ETj6wBbsJmBJmHZ0IDqIIk__C1ZYMKnSlfvr-ccE8vk
+Content-Type: application/json
 
 
 # COMPOSER
@@ -94,4 +103,8 @@ Content-Type: application/json
 
 ###
 GET  http://localhost:3001/api/v1/product
+Content-Type: application/json
+
+###
+GET  http://localhost:3001/api/v1/product/60889b12a0a53e0cfc9280be
 Content-Type: application/json

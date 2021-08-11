@@ -32,3 +32,16 @@ export const getProducts = async (req, res) => {
     res.status(500).json({ message: `${error}` });
   }
 };
+
+export const getProductById = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const product = await ProductModel.findById(id)
+      .populate('composers')
+      .populate('instruments');
+
+    res.status(200).json(product);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};

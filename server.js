@@ -44,3 +44,8 @@ mongoose
     );
   })
   .catch((error) => console.log(`${error} did not connect`));
+
+process.on('unhandledRejection', (err) => {
+  console.log(err.name, err.message, '| Unhandled Rejection!');
+  process.exit(1);
+});
