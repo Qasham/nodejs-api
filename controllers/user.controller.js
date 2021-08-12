@@ -31,6 +31,7 @@ export const signIn = async (req, res) => {
       surname: oldUser.surname,
       email: oldUser.email,
       basket: oldUser.basket,
+      address: oldUser.address,
       token,
     });
   } catch (err) {
@@ -77,16 +78,27 @@ export const getBasket = async (req, res) => {
   }
 
   try {
-    const user = await UserModel.findById(req.userId).populate('basket', {
-      name: 1,
-      price: 1,
-      media_list: 1,
+    const user = await UserModel.findById(req.userId).populate({
+      path: 'basket',
+      populate: {
+        path: 'product',
+        select: 'name price media_list instruments',
+        populate: {
+          path: 'instruments',
+        },
+      },
     });
-
+    console.log(user, 'user');
     const basket = user.basket.map((p) => ({
-      name: p.name,
-      price: p.price,
-      media: p.media_list[0].thumbnail,
+      id: p._id,
+      count: p.count,
+      product: {
+        id: p.product._id,
+        name: p.product.name,
+        price: p.product.price,
+        media: p.product.media_list[0].thumbnail,
+        instruments: p.product.instruments,
+      },
     }));
 
     res.status(200).json({ data: basket });
@@ -111,11 +123,10 @@ export const addToBasket = async (req, res) => {
     if (!product) {
       return res.status(404).send(`Product not found`);
     }
-    if (!user?.basket.find((p) => String(p) === id)) {
-      user.basket.push(product);
+    if (!user?.basket.find((p) => String(p.product) === id)) {
+      user.basket.push({ count: 1, product });
       user.save();
-      res.status(200).json({ message: 'Product added succesfully' });
-      return;
+      return res.status(200).json({ message: 'Product added succesfully' });
     }
     res.status(409).json({ message: 'Product already exist in basket' });
   } catch (err) {
@@ -129,21 +140,29 @@ export const removeFromBasket = async (req, res) => {
     if (!req.userId) {
       return res.status(401).json({ message: 'Unauthenticated' });
     }
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      return res.status(404).send(`No product with id: ${id}`);
-    }
-    const product = await ProductModel.findById(id);
-    if (!product) {
-      return res.status(404).send(`Product not found`);
-    }
+
     const user = await UserModel.findById(req.userId);
-    if (user?.basket.find((p) => String(p) === id)) {
-      user.basket = user.basket.filter((p) => String(p) !== id);
+    if (user?.basket.find((p) => String(p._id) === id)) {
+      user.basket = user.basket.filter((p) => String(p._id) !== id);
       user.save();
-      res.status(201).json({ message: 'Product removed succesfully' });
-      return;
+      return res.status(201).json({ message: 'Product removed succesfully' });
     }
     res.status(409).json({ message: 'Product doesnt exist in basket' });
+  } catch (error) {
+    res.status(500).json({ message: `Something went wrong ${error}` });
+  }
+};
+
+export const editAddress = async (req, res) => {
+  if (!req.userId) {
+    return res.status(401).json({ message: 'Unauthenticated' });
+  }
+  try {
+    const user = await UserModel.findById(req.userId);
+    user.address = req.body;
+    await user.save();
+
+    res.status(200).json(user);
   } catch (error) {
     res.status(500).json({ message: `Something went wrong ${error}` });
   }

@@ -1,16 +1,16 @@
 # AUTH
-POST  http://localhost:3001/api/v1/auth/register
+POST  http://localhost:3001/auth/register
 Content-Type: application/json
 
 {
-   "name":"Qasham",
+   "name":"Ilham",
    "surname":"Quluzada",
-   "email":"test23@amail.az",
+   "email":"ilham@amail.az",
    "password":"qwerty23"
 }
 
 ###
-POST  http://localhost:3001/api/v1/auth/login
+POST  http://localhost:3001/auth/login
 Content-Type: application/json
 
 {
@@ -24,24 +24,38 @@ Content-Type: application/json
 
 # USER
 ###
-POST  http://localhost:3001/api/v1/user/add-to-basket/60889b12a0a53e0cfc9280be
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyM0BhbWFpbC5heiIsImlkIjoiNjA4NzM4MjIyYmM3M2MzNjBjM2JmMDZkIiwiaWF0IjoxNjI4NjI2NDQzLCJleHAiOjE2Mjg2MzAwNDN9.ETj6wBbsJmBJmHZ0IDqIIk__C1ZYMKnSlfvr-ccE8vk
+POST  http://localhost:3001/user/add-to-basket/61144110af432a0e3c27029b
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyM0BhbWFpbC5heiIsImlkIjoiNjA4NzM4MjIyYmM3M2MzNjBjM2JmMDZkIiwiaWF0IjoxNjI4Nzc1NjI3LCJleHAiOjE2Mjg3NzkyMjd9.14RSza96mixaAtj_UxHM7o_Ok_XOTCvG-22-BPcYNqM
 Content-Type: application/json
 ### 
-DELETE   http://localhost:3001/api/v1/user/remove-from-basket/60889b12a0a53e0cfc9280be
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyM0BhbWFpbC5heiIsImlkIjoiNjA4NzM4MjIyYmM3M2MzNjBjM2JmMDZkIiwiaWF0IjoxNjI4NjI2NDQzLCJleHAiOjE2Mjg2MzAwNDN9.ETj6wBbsJmBJmHZ0IDqIIk__C1ZYMKnSlfvr-ccE8vk
+DELETE   http://localhost:3001/user/remove-from-basket/61144134af432a0e3c27029f
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyM0BhbWFpbC5heiIsImlkIjoiNjA4NzM4MjIyYmM3M2MzNjBjM2JmMDZkIiwiaWF0IjoxNjI4Nzc1NjI3LCJleHAiOjE2Mjg3NzkyMjd9.14RSza96mixaAtj_UxHM7o_Ok_XOTCvG-22-BPcYNqM
 Content-Type: application/json
 
 
 ###
-GET   http://localhost:3001/api/v1/user/get-basket
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyM0BhbWFpbC5heiIsImlkIjoiNjA4NzM4MjIyYmM3M2MzNjBjM2JmMDZkIiwiaWF0IjoxNjI4NjI2NDQzLCJleHAiOjE2Mjg2MzAwNDN9.ETj6wBbsJmBJmHZ0IDqIIk__C1ZYMKnSlfvr-ccE8vk
+GET   http://localhost:3001/user/get-basket
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyM0BhbWFpbC5heiIsImlkIjoiNjA4NzM4MjIyYmM3M2MzNjBjM2JmMDZkIiwiaWF0IjoxNjI4Nzc1NjI3LCJleHAiOjE2Mjg3NzkyMjd9.14RSza96mixaAtj_UxHM7o_Ok_XOTCvG-22-BPcYNqM
 Content-Type: application/json
+
+###
+PUT    http://localhost:3001/user/edit-address
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyM0BhbWFpbC5heiIsImlkIjoiNjA4NzM4MjIyYmM3M2MzNjBjM2JmMDZkIiwiaWF0IjoxNjI4Nzc1NjI3LCJleHAiOjE2Mjg3NzkyMjd9.14RSza96mixaAtj_UxHM7o_Ok_XOTCvG-22-BPcYNqM
+Content-Type: application/json
+
+{
+  "address_line_1":"Razinn",
+  "address_line_2":"234",
+  "post_code":"az2342",
+  "phone_number":"29349294234",
+  "country": "Azeer",
+  "city": "Bakuu"
+}
 
 
 # COMPOSER
 ### 
-POST  http://localhost:3001/api/v1/composer
+POST  http://localhost:3001/composer
 Content-Type: application/json
 
 {
@@ -53,9 +67,34 @@ Content-Type: application/json
   
 }
 ###
-GET  http://localhost:3001/api/v1/composer
+GET  http://localhost:3001/composer
 Content-Type: application/json
 
+
+# OFFER
+### 
+POST  http://localhost:3001/offer
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyM0BhbWFpbC5heiIsImlkIjoiNjA4NzM4MjIyYmM3M2MzNjBjM2JmMDZkIiwiaWF0IjoxNjI4Nzc1NjI3LCJleHAiOjE2Mjg3NzkyMjd9.14RSza96mixaAtj_UxHM7o_Ok_XOTCvG-22-BPcYNqM
+
+{
+   "status":false,
+   "items": [
+      {
+         "count":1,
+         "product":"61144110af432a0e3c27029b"
+         },
+          {
+         "count":2,
+         "product":"60889b12a0a53e0cfc9280be"
+         }
+   ]
+  
+}
+###
+GET  http://localhost:3001/offer
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyM0BhbWFpbC5heiIsImlkIjoiNjA4NzM4MjIyYmM3M2MzNjBjM2JmMDZkIiwiaWF0IjoxNjI4Nzc1NjI3LCJleHAiOjE2Mjg3NzkyMjd9.14RSza96mixaAtj_UxHM7o_Ok_XOTCvG-22-BPcYNqM
+Content-Type: application/json
 
 
 
@@ -64,26 +103,21 @@ Content-Type: application/json
 # PRODUCT
 ###
 
-POST  http://localhost:3001/api/v1/product
+POST  http://localhost:3001/product
 Content-Type: application/json
 
 {
-   "name":"Test",
+   "name":"Fantasie über Themen aus Giuseppe Verdis Rigoletto",
    "genre":"Classical",
    "composers":["608747a87362c828b08f66ac"],
    "description":"This digital sheet music was either arranged by Dan Turcan staff of professional arrangers and composers or it is a new engraving of the composition's original printed arrangement. Revered by his peers, industry professionals, and critics, his work has been called both “rare” and “remarkable. ”This composer bends and stretches rules within his own aesthetic, weaving his musical ideas in harmonious waves that threaten to drown, yet gently tumble the listener forward with intrigue and anticipation.",
    "audio_url":"http://cld3097web.audiovideoweb.com/va90web25003/companions/Foundations%20of%20Rock/3.01.mp3",
    "price":24.5,
-   "instruments":["60884ac41e2b3b33ac554ddd","60884ac41e2b3b33ac554ddc"],
-   "pages":23,
-   "release_date":"2021-04-27T19:57:25.508Z",
+   "instruments":["60884ac41e2b3b33ac554ddd"],
+   "pages":121,
+   "release_date":"2021-08-27T19:57:25.508Z",
    "media_list":[
        {
-          "isVideo": false,
-          "thumbnail": "https://qasham.github.io/justforhorns/assets/images/pdfPreviewImg.png",
-          "url": "https://qasham.github.io/justforhorns/assets/images/pdfPreviewImg.png"
-        },
-        {
           "isVideo": false,
           "thumbnail": "https://qasham.github.io/justforhorns/assets/images/pdfPreviewImg.png",
           "url": "https://qasham.github.io/justforhorns/assets/images/pdfPreviewImg.png"
@@ -102,9 +136,9 @@ Content-Type: application/json
 }
 
 ###
-GET  http://localhost:3001/api/v1/product
+GET  http://localhost:3001/product
 Content-Type: application/json
 
 ###
-GET  http://localhost:3001/api/v1/product/60889b12a0a53e0cfc9280be
+GET  http://localhost:3001/product/60889b12a0a53e0cfc9280be
 Content-Type: application/json

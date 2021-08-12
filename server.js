@@ -8,6 +8,7 @@ import {
   ProductRoute,
   AuthRoute,
   UserRoute,
+  OfferRoute,
 } from './routes/index.js';
 
 dotenv.config();
@@ -21,10 +22,11 @@ app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // ROUTES
-app.use('/api/v1/auth', AuthRoute);
-app.use('/api/v1/user', UserRoute);
-app.use('/api/v1/composer', ComposerRoute);
-app.use('/api/v1/product', ProductRoute);
+app.use('/auth', AuthRoute);
+app.use('/user', UserRoute);
+app.use('/composer', ComposerRoute);
+app.use('/product', ProductRoute);
+app.use('/offer', OfferRoute);
 
 app.get('/', (req, res) => {
   res.status(200).send('Hello world');
