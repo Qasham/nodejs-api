@@ -142,3 +142,20 @@ Content-Type: application/json
 ###
 GET  http://localhost:3001/product/60889b12a0a53e0cfc9280be
 Content-Type: application/json
+
+
+# FAQ
+###
+GET  http://localhost:3001/faq
+Content-Type: application/json
+
+###
+
+POST  http://localhost:3001/faq
+Content-Type: application/json
+
+{
+   "question":"How can i cancel my order?",
+   "answer":"Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet."
+}
+

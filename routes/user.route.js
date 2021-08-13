@@ -5,7 +5,7 @@ import {
   getBasket,
   removeFromBasket,
 } from '../controllers/user.controller.js';
-import auth from '../middlewares/auth.js';
+import auth from '../middlewares/auth.middleware.js';
 
 const router = express.Router();
 

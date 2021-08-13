@@ -2,13 +2,13 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import express from 'express';
-import bodyParser from 'body-parser';
 import {
   ComposerRoute,
   ProductRoute,
   AuthRoute,
   UserRoute,
   OfferRoute,
+  FaqRoute,
 } from './routes/index.js';
 
 dotenv.config();
@@ -18,8 +18,8 @@ const app = express();
 
 // MIDDLEWARES
 app.use(cors());
-app.use(bodyParser.json({ extended: true }));
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 
 // ROUTES
 app.use('/auth', AuthRoute);
@@ -27,6 +27,7 @@ app.use('/user', UserRoute);
 app.use('/composer', ComposerRoute);
 app.use('/product', ProductRoute);
 app.use('/offer', OfferRoute);
+app.use('/faq', FaqRoute);
 
 app.get('/', (req, res) => {
   res.status(200).send('Hello world');
