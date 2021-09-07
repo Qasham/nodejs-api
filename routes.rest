@@ -5,7 +5,7 @@ Content-Type: application/json
 {
    "name":"Ilham",
    "surname":"Quluzada",
-   "email":"ilham@amail.az",
+   "email":"ilham@amailss.az",
    "password":"qwerty23"
 }
 
@@ -14,7 +14,7 @@ POST  http://localhost:3001/auth/login
 Content-Type: application/json
 
 {
-   "email":"test23@amail.az",
+   "email":"qqasham23@mail.ru",
    "password":"qwerty23"
 }
 
@@ -23,24 +23,60 @@ Content-Type: application/json
 
 
 # USER
+
 ###
-POST  http://localhost:3001/user/add-to-basket/61144110af432a0e3c27029b
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyM0BhbWFpbC5heiIsImlkIjoiNjA4NzM4MjIyYmM3M2MzNjBjM2JmMDZkIiwiaWF0IjoxNjI4Nzc1NjI3LCJleHAiOjE2Mjg3NzkyMjd9.14RSza96mixaAtj_UxHM7o_Ok_XOTCvG-22-BPcYNqM
+GET   http://localhost:3001/user
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InFxYXNoYW0yM0BtYWlsLnJ1IiwiaWQiOiI2MTFkYTMzZjhlN2YwMzAwMTYwNzJkZWQiLCJpYXQiOjE2Mjk3NTE1MDMsImV4cCI6MTYyOTc1MTYyM30.GY3KM6etiBvUrj5DPtKY7a6t18XCRHMKaRgkjFNr0-U
+Content-Type: application/json
+
+###
+POST  http://localhost:3001/user/add-to-basket/612242e7c25c713fec6e170d
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InFxYXNoYW0yM0BtYWlsLnJ1IiwiaWQiOiI2MTFkYTMzZjhlN2YwMzAwMTYwNzJkZWQiLCJpYXQiOjE2Mjk3NTE1MDMsImV4cCI6MTYyOTc1MTYyM30.GY3KM6etiBvUrj5DPtKY7a6t18XCRHMKaRgkjFNr0-U
 Content-Type: application/json
 ### 
-DELETE   http://localhost:3001/user/remove-from-basket/61144134af432a0e3c27029f
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyM0BhbWFpbC5heiIsImlkIjoiNjA4NzM4MjIyYmM3M2MzNjBjM2JmMDZkIiwiaWF0IjoxNjI4Nzc1NjI3LCJleHAiOjE2Mjg3NzkyMjd9.14RSza96mixaAtj_UxHM7o_Ok_XOTCvG-22-BPcYNqM
+DELETE   http://localhost:3001/user/remove-from-basket/6122a9ceff6c421ee4a3dde3
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InFxYXNoYW0yM0BtYWlsLnJ1IiwiaWQiOiI2MTFkYTMzZjhlN2YwMzAwMTYwNzJkZWQiLCJpYXQiOjE2Mjk3NTE1MDMsImV4cCI6MTYyOTc1MTYyM30.GY3KM6etiBvUrj5DPtKY7a6t18XCRHMKaRgkjFNr0-U
 Content-Type: application/json
 
 
 ###
 GET   http://localhost:3001/user/get-basket
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyM0BhbWFpbC5heiIsImlkIjoiNjA4NzM4MjIyYmM3M2MzNjBjM2JmMDZkIiwiaWF0IjoxNjI4Nzc1NjI3LCJleHAiOjE2Mjg3NzkyMjd9.14RSza96mixaAtj_UxHM7o_Ok_XOTCvG-22-BPcYNqM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InFxYXNoYW0yM0BtYWlsLnJ1IiwiaWQiOiI2MTFkYTMzZjhlN2YwMzAwMTYwNzJkZWQiLCJpYXQiOjE2Mjk3NTE1MDMsImV4cCI6MTYyOTc1MTYyM30.GY3KM6etiBvUrj5DPtKY7a6t18XCRHMKaRgkjFNr0-U
 Content-Type: application/json
+
+# [
+#   {
+#     "id": "6121621237d53c19901b6775",
+#     "count": 1,
+#     "product": {
+#       "id": "61144110af432a0e3c27029b",
+#       "name": "Fantasie über Themen aus Giuseppe Verdis Rigoletto",
+#       "price": 24.5,
+#       "media": "https://qasham.github.io/justforhorns/assets/images/pdfPreviewImg.png",
+#       "instruments": [
+#         {
+#           "_id": "60884ac41e2b3b33ac554ddd",
+#           "name": "Tuba",
+#           "__v": 0
+#         }
+#       ]
+#     }
+#   }
+# ]
+###
+PUT   http://localhost:3001/user
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InFxYXNoYW0yM0BtYWlsLnJ1IiwiaWQiOiI2MTFkYTMzZjhlN2YwMzAwMTYwNzJkZWQiLCJpYXQiOjE2MzAwOTc4NDgsImV4cCI6MTYzMDE4NDI0OH0.4vEi2migaF9d7m5A0Bu11-sZ2_OJEhz5GnH40uaT1TM
+Content-Type: application/json
+
+{
+    "name": "Gasham",
+    "surname": "Guluzada",
+    "email":"qqasham@mail.ru"
+}
 
 ###
 PUT    http://localhost:3001/user/edit-address
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyM0BhbWFpbC5heiIsImlkIjoiNjA4NzM4MjIyYmM3M2MzNjBjM2JmMDZkIiwiaWF0IjoxNjI4Nzc1NjI3LCJleHAiOjE2Mjg3NzkyMjd9.14RSza96mixaAtj_UxHM7o_Ok_XOTCvG-22-BPcYNqM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InFxYXNoYW0yM0BtYWlsLnJ1IiwiaWQiOiI2MTFkYTMzZjhlN2YwMzAwMTYwNzJkZWQiLCJpYXQiOjE2Mjk5ODA5NTAsImV4cCI6MTYzMDA2NzM1MH0.EW2a_YIeiPPVIWSYuC9QZI5joRynFgocVheSKZwD3HQ
 Content-Type: application/json
 
 {
@@ -53,47 +89,23 @@ Content-Type: application/json
 }
 
 
-# COMPOSER
-### 
-POST  http://localhost:3001/composer
-Content-Type: application/json
 
-{
-   "fullname":"GUY HAWKINSasdasd",
-   "job": "composer234",
-   "description": "As a composer for media, Drew has produced music and sonic branding for numerous world brands and media conglomerates. He is also an active concert composer and sound artist with a diverse range of international commissions and exhibits. Revered by his peers, industry professionals, and critics, his work has been called both “rare” and “remarkable.” “This composer bends and stretches rules within his own aesthetic, weaving his musical ideas in harmonious waves that threaten to drown, yet gently tumble the listener forward with intrigue and anticipation.” -Adam Rosenthal review for Persee: Orchestrated Perception I think we shall meet!",
-   "photo_url": "https://qasham.github.io/justforhorns/assets/images/composer1.png",
-   "country": "Azerbaijan"
-  
-}
-###
-GET  http://localhost:3001/composer
-Content-Type: application/json
 
 
 # OFFER
 ### 
-POST  http://localhost:3001/offer
+POST  http://localhost:3001/order
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyM0BhbWFpbC5heiIsImlkIjoiNjA4NzM4MjIyYmM3M2MzNjBjM2JmMDZkIiwiaWF0IjoxNjI4Nzc1NjI3LCJleHAiOjE2Mjg3NzkyMjd9.14RSza96mixaAtj_UxHM7o_Ok_XOTCvG-22-BPcYNqM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InFxYXNoYW0yM0BtYWlsLnJ1IiwiaWQiOiI2MTFkYTMzZjhlN2YwMzAwMTYwNzJkZWQiLCJpYXQiOjE2Mjk4MDk2OTMsImV4cCI6MTYyOTg5NjA5M30.FsdBMa5w4GGgX0ZhwxV4TJpihQzplulnZdaryCd91Ic
 
 {
-   "status":false,
-   "items": [
-      {
-         "count":1,
-         "product":"61144110af432a0e3c27029b"
-         },
-          {
-         "count":2,
-         "product":"60889b12a0a53e0cfc9280be"
-         }
-   ]
+   "status":true,
+   "items": []
   
 }
 ###
-GET  http://localhost:3001/offer
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyM0BhbWFpbC5heiIsImlkIjoiNjA4NzM4MjIyYmM3M2MzNjBjM2JmMDZkIiwiaWF0IjoxNjI4Nzc1NjI3LCJleHAiOjE2Mjg3NzkyMjd9.14RSza96mixaAtj_UxHM7o_Ok_XOTCvG-22-BPcYNqM
+GET  http://localhost:3001/order
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InFxYXNoYW0yM0BtYWlsLnJ1IiwiaWQiOiI2MTFkYTMzZjhlN2YwMzAwMTYwNzJkZWQiLCJpYXQiOjE2Mjk4MDk2OTMsImV4cCI6MTYyOTg5NjA5M30.FsdBMa5w4GGgX0ZhwxV4TJpihQzplulnZdaryCd91Ic
 Content-Type: application/json
 
 
@@ -107,40 +119,56 @@ POST  http://localhost:3001/product
 Content-Type: application/json
 
 {
-   "name":"Fantasie über Themen aus Giuseppe Verdis Rigoletto",
-   "genre":"Classical",
-   "composers":["608747a87362c828b08f66ac"],
+   "name": "Thirty Studies in the Bass and Tenor Clef für Posaune",
+   "genre":"Classic",
+   "composers":["60874416d1ac4839f08b008b"],
    "description":"This digital sheet music was either arranged by Dan Turcan staff of professional arrangers and composers or it is a new engraving of the composition's original printed arrangement. Revered by his peers, industry professionals, and critics, his work has been called both “rare” and “remarkable. ”This composer bends and stretches rules within his own aesthetic, weaving his musical ideas in harmonious waves that threaten to drown, yet gently tumble the listener forward with intrigue and anticipation.",
    "audio_url":"http://cld3097web.audiovideoweb.com/va90web25003/companions/Foundations%20of%20Rock/3.01.mp3",
-   "price":24.5,
-   "instruments":["60884ac41e2b3b33ac554ddd"],
-   "pages":121,
-   "release_date":"2021-08-27T19:57:25.508Z",
+   "photo_url":"https://justforhorns.netlify.app/assets/images/product3.png",
+   "price":36.5,
+   "instruments":["60884ac41e2b3b33ac554ddb"],
+   "pages":12,
+   "youtube_url":"https://www.youtube.com/watch?v=PM6qx0baRTQ&ab_channel=BigCrownRecords",
+   "release_date":"2021-05-02T23:00:25.508Z",
+   "price_list": [
+        {
+          "name": "PDFs and Printing",
+          "price": 36.5
+        },
+        {
+          "name": "Printing",
+          "price": 14.2
+        },
+        {
+          "name": "PDFs",
+          "price": 12
+        }
+   ],
    "media_list":[
        {
           "isVideo": false,
-          "thumbnail": "https://qasham.github.io/justforhorns/assets/images/pdfPreviewImg.png",
-          "url": "https://qasham.github.io/justforhorns/assets/images/pdfPreviewImg.png"
+          "thumbnail": "https://justforhorns.netlify.app/assets/images/pdfPreviewImg.png",
+          "url": "https://justforhorns.netlify.app/assets/images/pdfPreviewImg.png"
         },
         {
           "isVideo": false,
-          "thumbnail": "https://qasham.github.io/justforhorns/assets/images/pdfPreviewImg.png",
-          "url": "https://qasham.github.io/justforhorns/assets/images/pdfPreviewImg.png"
+          "thumbnail": "https://justforhorns.netlify.app/assets/images/pdfPreviewImg.png",
+          "url": "https://justforhorns.netlify.app/assets/images/pdfPreviewImg.png"
         },
         {
           "isVideo": true,
-          "thumbnail": "https://qasham.github.io/justforhorns/assets/images/videoPreviewImg.png",
-          "url": "https://www.youtube.com/watch?v=tkABhOWSeak&list=RDtkABhOWSeak&start_radio=1"
+          "thumbnail": "https://justforhorns.netlify.app/assets/images/videoPreviewImg.png",
+          "url": "https://www.youtube.com/watch?v=PM6qx0baRTQ&ab_channel=BigCrownRecords"
         }
    ]
 }
 
 ###
-GET  http://localhost:3001/product
+GET  http://localhost:3001/product?instruments=["60884ac41e2b3b33ac554ddd"]&sort=price
 Content-Type: application/json
 
 ###
-GET  http://localhost:3001/product/60889b12a0a53e0cfc9280be
+GET  http://localhost:3001/product/612403d6134caf1f480adbb6
 Content-Type: application/json
 
 
@@ -159,3 +187,49 @@ Content-Type: application/json
    "answer":"Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet."
 }
 
+# INSTRUMENT
+###
+GET  http://localhost:3001/instrument
+Content-Type: application/json
+
+###
+
+POST  http://localhost:3001/instrument
+Content-Type: application/json
+
+{
+   "name":"Bass gitar",
+}
+
+# COMPOSER
+### 
+POST  http://localhost:3001/composer
+Content-Type: application/json
+
+{
+   "fullname":"GUY HAWKINSasdasd",
+   "job": "composer234",
+   "description": "As a composer for media, Drew has produced music and sonic branding for numerous world brands and media conglomerates. He is also an active concert composer and sound artist with a diverse range of international commissions and exhibits. Revered by his peers, industry professionals, and critics, his work has been called both “rare” and “remarkable.” “This composer bends and stretches rules within his own aesthetic, weaving his musical ideas in harmonious waves that threaten to drown, yet gently tumble the listener forward with intrigue and anticipation.” -Adam Rosenthal review for Persee: Orchestrated Perception I think we shall meet!",
+   "photo_url": "https://qasham.github.io/justforhorns/assets/images/composer1.png",
+   "country": "Azerbaijan"
+  
+}
+###
+GET  http://localhost:3001/composer?isForFilter=true
+Content-Type: application/json
+
+# SETTINGS
+###
+GET  http://localhost:3001/settings/filter-items
+Content-Type: application/json
+###
+
+Post  http://localhost:3001/settings/message
+Content-Type: application/json
+
+{
+   "name":"John Doe",
+   "surname":"Qasham",
+   "email":"qqasham23@mail.ru",
+   "text":"Qasham"
+}

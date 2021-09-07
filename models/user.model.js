@@ -18,10 +18,11 @@ const userSchema = mongoose.Schema({
   id: { type: String },
   name: { type: String, required: true },
   surname: { type: String, required: true },
-  email: { type: String, required: true },
+  email: { type: String, required: true, unique: [true] },
   password: { type: String, required: true },
   basket: [{ type: basketSchema }],
   address: { type: addressSchema, default: {} },
+  token: { type: String },
 });
 
 // userSchema.pre(/^find/, function (next) {

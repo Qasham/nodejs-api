@@ -1,4 +1,5 @@
 import { ProductModel } from '../models/index.js';
+// import APIFeatures from '../utils/apiFeatures.js';
 
 export const createProduct = async (req, res, next) => {
   try {
@@ -13,23 +14,9 @@ export const createProduct = async (req, res, next) => {
     await newProduct.save();
     res.status(201).json(newProduct);
   } catch (error) {
-    // next(error);
-    res.status(500).json({ message: `${error}` });
-  }
-};
-
-export const getProducts = async (req, res) => {
-  try {
-    const allProducts = await ProductModel.find(null, {
-      __v: 0,
-      media_list: 0,
-    })
-      .populate('composers', { fullname: 1, photo_url: 1 })
-      .populate('instruments', { name: 1 });
-
-    res.status(200).json(allProducts);
-  } catch (error) {
-    res.status(500).json({ message: `${error}` });
+    res.status(500).json({
+      message: error,
+    });
   }
 };
 
@@ -37,11 +24,47 @@ export const getProductById = async (req, res) => {
   const { id } = req.params;
   try {
     const product = await ProductModel.findById(id)
-      .populate('composers')
-      .populate('instruments');
+      .populate('composers', { fullname: 1 })
+      .populate('instruments', { name: 1 });
+
+    if (!product) {
+      return res.status(404).send(`Product not found`);
+    }
 
     res.status(200).json(product);
   } catch (error) {
-    res.status(404).json({ message: error.message });
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export const getProducts = async (req, res) => {
+  try {
+    const filter = {};
+    const composerIds = JSON.parse(req.query.composers || '[]');
+    const instrumentIds = JSON.parse(req.query.instruments || '[]');
+    if (composerIds.length) {
+      filter.composers = { $in: composerIds };
+    }
+    if (instrumentIds.length) {
+      filter.instruments = { $in: instrumentIds };
+    }
+    const filterProducts = await ProductModel.find(filter || null, {
+      __v: 0,
+      media_list: 0,
+      price_list: 0,
+      description: 0,
+      pages: 0,
+      release_date: 0,
+      genre: 0,
+    })
+      .sort(req.query.sort)
+      .populate('composers', { fullname: 1 })
+      .populate('instruments', { name: 1 });
+    res.status(200).json(filterProducts);
+  } catch (error) {
+    console.log(error, 'error');
+    res.status(500).json({
+      message: error,
+    });
   }
 };

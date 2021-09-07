@@ -7,8 +7,10 @@ import {
   ProductRoute,
   AuthRoute,
   UserRoute,
-  OfferRoute,
+  OrderRoute,
   FaqRoute,
+  InstrumentRoute,
+  SettingsRoute,
 } from './routes/index.js';
 
 dotenv.config();
@@ -20,22 +22,26 @@ const app = express();
 app.use(cors());
 app.use(express.json({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
-
+app.options('*', cors());
 // ROUTES
 app.use('/auth', AuthRoute);
 app.use('/user', UserRoute);
 app.use('/composer', ComposerRoute);
 app.use('/product', ProductRoute);
-app.use('/offer', OfferRoute);
+app.use('/order', OrderRoute);
 app.use('/faq', FaqRoute);
+app.use('/settings', SettingsRoute);
+app.use('/instrument', InstrumentRoute);
 
 app.get('/', (req, res) => {
-  res.status(200).send('Hello world');
+  res.status(200).send('Welcome JustForHorns Api App');
 });
 
 // START listening to the server
+
+const DB = process.env.CONNECTION_URL;
 mongoose
-  .connect(process.env.CONNECTION_URL, {
+  .connect(DB, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
@@ -48,7 +54,12 @@ mongoose
   })
   .catch((error) => console.log(`${error} did not connect`));
 
+process.on('uncaughtException', (err) => {
+  console.log('UNCAUGHT EXCEPTION! 💥 Shutting down...');
+  console.log(err.name, err.message);
+  process.exit(1);
+});
 process.on('unhandledRejection', (err) => {
-  console.log(err.name, err.message, '| Unhandled Rejection!');
+  console.log(err.name, err.message, '| 💥 Unhandled Rejection!');
   process.exit(1);
 });

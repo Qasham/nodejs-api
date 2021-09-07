@@ -11,15 +11,25 @@ export const createComposer = async (req, res) => {
     }
 
     await newComposer.save();
-    res.status(201).json({ newComposer, message: 'Composer created' });
+    res.status(201).json(newComposer);
   } catch (error) {
-    res.status(500).json({ message: error });
+    res.status(500).json({
+      message: error,
+    });
   }
 };
 
 export const getComposers = async (req, res) => {
   try {
-    const allComposer = await ComposerModel.find();
+    const { isForFilter } = req.query;
+    let allComposer = [];
+
+    // eslint-disable-next-line no-extra-boolean-cast
+    if (isForFilter === 'true') {
+      allComposer = await ComposerModel.find(null, { fullname: 1 });
+    } else {
+      allComposer = await ComposerModel.find();
+    }
     res.status(200).json(allComposer);
   } catch (error) {
     res.status(404).json({

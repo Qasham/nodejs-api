@@ -12,14 +12,16 @@ export const createFaq = async (req, res) => {
     res.status(201).json(newFaq);
   } catch (error) {
     // next(error);
-    res.status(500).json({ message: `${error}` });
+    res.status(500).json({
+      message: error,
+    });
   }
 };
 
 export const getAllFaqs = async (req, res) => {
   try {
     const allFaqs = await FaqModel.find();
-    res.status(200).json({ data: allFaqs });
+    res.status(200).json(allFaqs);
   } catch (error) {
     res.status(500).json({
       message: error,

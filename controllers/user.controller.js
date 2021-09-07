@@ -12,30 +12,22 @@ export const signIn = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const oldUser = await UserModel.findOne({ email });
-    // .populate('basket');
-    if (!oldUser)
-      return res.status(404).json({ message: "User doesn't exist" });
+    const user = await UserModel.findOne({ email });
 
-    const isPasswordCorrect = await bcrypt.compare(password, oldUser.password);
-
-    if (!isPasswordCorrect)
-      return res.status(400).json({ message: 'Invalid credentials' });
-
-    const token = jwt.sign({ email: oldUser.email, id: oldUser._id }, SECRET, {
-      expiresIn: '1h',
+    if (!user || !(await bcrypt.compare(password, user.password))) {
+      return res
+        .status(404)
+        .json({ message: 'Email or password is not correct' });
+    }
+    const token = jwt.sign({ email: user.email, id: user._id }, SECRET, {
+      expiresIn: '1d',
     });
 
-    res.status(200).json({
-      name: oldUser.name,
-      surname: oldUser.surname,
-      email: oldUser.email,
-      basket: oldUser.basket,
-      address: oldUser.address,
-      token,
+    res.status(200).json(token);
+  } catch (error) {
+    res.status(500).json({
+      message: error,
     });
-  } catch (err) {
-    res.status(500).json({ message: `'Something went wrong'- ${err}` });
   }
 };
 
@@ -53,25 +45,47 @@ export const signUp = async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 12);
 
-    const result = await UserModel.create({
+    const newUser = await UserModel.create({
       email,
       password: hashedPassword,
       name,
       surname,
       basket: [],
+      token: '',
     });
 
-    const token = jwt.sign({ email: result.email, id: result._id }, SECRET, {
-      expiresIn: '1h',
+    const token = jwt.sign({ email: newUser.email, id: newUser._id }, SECRET, {
+      expiresIn: '1d',
     });
-
-    res.status(201).json({ result, token });
+    res.status(201).json(token);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Something went wrong' });
+    res.status(500).json({
+      message: error,
+    });
   }
 };
-
+export const getUserData = async (req, res) => {
+  if (!req.userId) {
+    return res.status(401).json({ message: 'Unauthenticated' });
+  }
+  try {
+    const user = await UserModel.findById(req.userId, {
+      token: 0,
+      password: 0,
+      __v: 0,
+      basket: 0,
+    });
+    if (!user) {
+      return res.status(404).send(`User not found`);
+    }
+    return res.status(200).json(user);
+  } catch (error) {
+    res.status(500).json({
+      message: error,
+    });
+  }
+};
 export const getBasket = async (req, res) => {
   if (!req.userId) {
     return res.status(401).json({ message: 'Unauthenticated' });
@@ -82,28 +96,17 @@ export const getBasket = async (req, res) => {
       path: 'basket',
       populate: {
         path: 'product',
-        select: 'name price media_list instruments',
+        select: 'name price photo_url instruments',
         populate: {
           path: 'instruments',
         },
       },
     });
-    console.log(user, 'user');
-    const basket = user.basket.map((p) => ({
-      id: p._id,
-      count: p.count,
-      product: {
-        id: p.product._id,
-        name: p.product.name,
-        price: p.product.price,
-        media: p.product.media_list[0].thumbnail,
-        instruments: p.product.instruments,
-      },
-    }));
-
-    res.status(200).json({ data: basket });
-  } catch (err) {
-    res.status(500).json({ message: `Something went wrong ${err}` });
+    res.status(200).json(user.basket);
+  } catch (error) {
+    res.status(500).json({
+      message: error,
+    });
   }
 };
 
@@ -119,18 +122,28 @@ export const addToBasket = async (req, res) => {
 
   try {
     const user = await UserModel.findById(req.userId);
-    const product = await ProductModel.findById(id);
+    const product = await ProductModel.findById(id, {
+      name: 1,
+      price: 1,
+      photo_url: 1,
+      instruments: 1,
+    }).populate('instruments', { name: 1 });
+
     if (!product) {
       return res.status(404).send(`Product not found`);
     }
     if (!user?.basket.find((p) => String(p.product) === id)) {
       user.basket.push({ count: 1, product });
       user.save();
-      return res.status(200).json({ message: 'Product added succesfully' });
+      let basketItem = user.basket;
+      basketItem = basketItem.find((p) => String(p.product._id) === id);
+      return res.status(200).json(basketItem);
     }
     res.status(409).json({ message: 'Product already exist in basket' });
-  } catch (err) {
-    res.status(500).json({ message: 'Something went wrong' });
+  } catch (error) {
+    res.status(500).json({
+      message: error,
+    });
   }
 };
 
@@ -149,7 +162,9 @@ export const removeFromBasket = async (req, res) => {
     }
     res.status(409).json({ message: 'Product doesnt exist in basket' });
   } catch (error) {
-    res.status(500).json({ message: `Something went wrong ${error}` });
+    res.status(500).json({
+      message: error,
+    });
   }
 };
 
@@ -160,10 +175,31 @@ export const editAddress = async (req, res) => {
   try {
     const user = await UserModel.findById(req.userId);
     user.address = req.body;
-    await user.save();
 
-    res.status(200).json(user);
+    await user.save();
+    res.status(200).json(req.body);
   } catch (error) {
-    res.status(500).json({ message: `Something went wrong ${error}` });
+    res.status(500).json({
+      message: error,
+    });
+  }
+};
+
+export const editAccountInformation = async (req, res) => {
+  if (!req.userId) {
+    return res.status(401).json({ message: 'Unauthenticated' });
+  }
+  try {
+    const user = await UserModel.findById(req.userId);
+    user.name = req.body.name;
+    user.surname = req.body.surname;
+    user.email = req.body.email;
+    await user.save();
+    res.status(200).json(req.body);
+  } catch (error) {
+    console.log(error, 'error');
+    res.status(500).json({
+      message: error,
+    });
   }
 };
